@@ -1,0 +1,17 @@
+{
+  "name": "microfe",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/main",
+    "apps/survey",
+    "apps/chat"
+  ],
+  "scripts": {
+    "dev:main": "npm --workspace @microfe/main run dev",
+    "dev:survey": "npm --workspace @microfe/survey run dev",
+    "dev:chat": "npm --workspace @microfe/chat run dev",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces"
+  }
+}

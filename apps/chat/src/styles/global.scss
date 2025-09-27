@@ -1,0 +1,192 @@
+
+.shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.shell__header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.shell__title-group h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.shell__title-group p {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+.shell__content {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  min-height: 420px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.45);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.9rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  color: #e2e8f0;
+  transition: background 0.2s ease;
+}
+
+.link.router-link-active {
+  background: rgba(59, 130, 246, 0.25);
+}
+
+.link:hover {
+  background: rgba(30, 64, 175, 0.35);
+}
+
+code {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.4rem;
+}
+
+//
+
+.conversation {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.conversation__messages {
+  display: grid;
+  gap: 1rem;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.conversation__message {
+  background: rgba(30, 41, 59, 0.6);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.conversation__message header {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.conversation__message p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.composer {
+  display: grid;
+  gap: 1rem;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 0.9rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.composer label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.composer input,
+.composer textarea {
+  font: inherit;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(15, 23, 42, 0.6);
+  color: inherit;
+}
+
+.composer button {
+  justify-self: flex-end;
+  background: #38bdf8;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #0f172a;
+}
+
+.composer button:hover {
+  background: #0ea5e9;
+}
+
+//
+
+.presence h2 {
+  margin: 0 0 1rem;
+}
+
+.presence ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.presence li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  background: rgba(30, 41, 59, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 0.9rem;
+  padding: 0.85rem 1.1rem;
+}
+
+.status {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 9999px;
+  background: #f87171;
+  transition: background 0.2s ease;
+}
+
+.status[data-active='true'] {
+  background: #22c55e;
+}
+
+.presence button {
+  background: rgba(59, 130, 246, 0.3);
+  border: none;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  color: #e2e8f0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.presence button:hover {
+  background: rgba(59, 130, 246, 0.45);
+}
+
+.hint {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.node.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["DOM", "ES2020"],
+    "jsx": "preserve",
+    "types": ["node", "vite/client"]
+  },
+  "include": ["src/**/*", "env.d.ts"]
+}

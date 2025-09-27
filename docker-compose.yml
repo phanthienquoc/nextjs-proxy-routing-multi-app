@@ -1,0 +1,74 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:8.4
+    container_name: microfe-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: microfe
+      MYSQL_USER: microfe
+      MYSQL_PASSWORD: example
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+    command: ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+
+  survey:
+    build:
+      context: .
+      dockerfile: apps/survey/Dockerfile
+    container_name: microfe-survey
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_MAIN_API_BASE: ${NEXT_PUBLIC_MAIN_API_BASE_DOCKER:-http://main:3000}
+    ports:
+      - '3001:3001'
+    networks:
+      - microfe-net
+
+  chat:
+    build:
+      context: .
+      dockerfile: apps/chat/Dockerfile
+    container_name: microfe-chat
+    restart: unless-stopped
+    ports:
+      - '4173:4173'
+    networks:
+      - microfe-net
+
+  main:
+    build:
+      context: .
+      dockerfile: apps/main/Dockerfile
+    container_name: microfe-main
+    restart: unless-stopped
+    depends_on:
+      - db
+      - survey
+      - chat
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST:-db}
+      MYSQL_PORT: ${MYSQL_PORT:-3306}
+      MYSQL_USER: ${MYSQL_USER:-microfe}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-example}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-microfe}
+      NEXT_PUBLIC_SURVEY_ORIGIN: ${NEXT_PUBLIC_SURVEY_ORIGIN:-http://survey:3001}
+      NEXT_PUBLIC_CHAT_ORIGIN: ${NEXT_PUBLIC_CHAT_ORIGIN:-http://chat:4173}
+      SURVEY_PROXY_ENABLED: ${SURVEY_PROXY_ENABLED:-true}
+      CHAT_PROXY_ENABLED: ${CHAT_PROXY_ENABLED:-true}
+      NEXT_PUBLIC_INTERNAL_API_BASE: ${NEXT_PUBLIC_INTERNAL_API_BASE_DOCKER:-http://main:3000}
+    ports:
+      - '3000:3000'
+    networks:
+      - microfe-net
+
+volumes:
+  db_data:
+
+networks:
+  microfe-net:
+    driver: bridge
